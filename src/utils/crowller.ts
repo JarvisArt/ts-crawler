@@ -3,14 +3,13 @@ import path from 'path';
 import superagent from 'superagent';
 // superagent使用js写的，所以需要安装对应的ts类型文件
 // ts -> .d.ts 翻译文件 @types/superagent -> js
-import DellAnalyzer from './dellAnalyzer';
 
 export interface Analyzer {
   analyze: (html: string, filePath: string) => string;
 }
 
 class Crowller {
-  private filePath = path.resolve(__dirname, '../data/course.json');
+  private filePath = path.resolve(__dirname, '../../data/course.json');
 
   private async getRawHtml() {
     const result = await superagent.get(this.url);
@@ -32,7 +31,4 @@ class Crowller {
   }
 }
 
-const secret = 'secretKey';
-const url = `http://www.dell-lee.com/typescript/demo.html?secret=${secret}`;
-const analyzer = DellAnalyzer.getInstance();
-new Crowller(url, analyzer);
+export default Crowller;
